@@ -1,0 +1,50 @@
+# Sample requirements file.
+
+# Each package gets its own section. Hopefully the package you are building
+# only needs name and version, but there are several other options.
+
+# - name: ccdproc
+
+  # Version should match the version on PyPI. Versions that could be
+  # interpreted as numbers (e.g. 0.1) must be enclosed in quotes.
+
+  # version: '0.3.3' # Required for all packages.
+
+  # # Some packages need extra options passed to setup.py install. This
+  # # is the place to provide those options.
+
+  # setup_options: '--offline'   # Defaults to empty if omitted.
+
+  # # If the package contains compiled extensions that link to numpy this
+  # # must be set to true to ensure the package is built properly.
+  # # If in doubt, set it to true...though it should *always be false*
+  # # for a pure python package.
+
+  # numpy_compiled_extensions: false   # Defaults to false if omitted.
+
+  # # Some packages can only be built for specific versions of python but
+  # # setup.py often does not contain those restrictions (and conda skeleton
+  # # ignores it if present), so list restrictions on python version here.
+
+  # python: '>=2.7|>=3.4'  # if omitted, no restriction on python builds.
+
+  # # Some packages can only be built for certain platforms. List the EXCLUDED
+  # # platforms here. Platform names are shown below...note that listing all
+  # # platforms would result in no builds!
+
+  # # Default, if omitted, is to build on all platforms listed below.
+  # excluded_platforms:
+  #   - 'win-64'
+  #   - 'linux-64'
+  #   - 'osx-64'
+
+
+# An example of a simple requirement.
+
+- name: hgtools
+  version: '6.3'
+
+# # The package below has a recipe template.
+
+# - name: APLpy
+#   version: '1.0'
