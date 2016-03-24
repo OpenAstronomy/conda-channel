@@ -44,6 +44,8 @@
 - name: hgtools
   version: '6.3'
 
+- name: contextlib
+  version: '0.5.1'
 # # The package below has a recipe template.
 
 # - name: APLpy
