@@ -8,7 +8,7 @@ os:
 
 env:
     global:
-        - DESTINATION_CONDA_CHANNEL = "openastronomy"
+        - DESTINATION_CONDA_CHANNEL="openastronomy"
         - TARGET_ARCH="x64"
         - CONDA_INSTALL_LOCN="${HOME}/miniconda"
 
