@@ -46,6 +46,9 @@
 
 - name: contextlib2
   version: '0.5.1'
+
+- name: glymur
+  version: '0.8.3'
 # # The package below has a recipe template.
 
 # - name: APLpy
