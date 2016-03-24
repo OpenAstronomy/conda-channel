@@ -49,6 +49,10 @@
 
 - name: Glymur
   version: '0.8.3'
+
+
+- name: sunpy
+  version: '0.6.2'
 # # The package below has a recipe template.
 
 # - name: APLpy
