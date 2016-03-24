@@ -53,6 +53,7 @@
 
 - name: sunpy
   version: '0.6.2'
+  setup_options: '--offline'
 # # The package below has a recipe template.
 
 # - name: APLpy
