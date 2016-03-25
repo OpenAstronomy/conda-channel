@@ -59,3 +59,6 @@
 
 # - name: APLpy
 #   version: '1.0'
+
+- name: reducer
+  version: 0.2
