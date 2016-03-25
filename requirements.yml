@@ -62,3 +62,8 @@
 
 # - name: APLpy
 #   version: '1.0'
+
+- name: healpy
+  version: '1.9.1'
+  numpy_compiled_extensions: true
+  numpy_build_restrictions: '>=1.9*'
