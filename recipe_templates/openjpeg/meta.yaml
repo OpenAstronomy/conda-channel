@@ -1,10 +1,10 @@
 package:
   name: openjpeg
-  version: 2.1.0
+  version: {{version}}
 
 source:
-    url: https://github.com/uclouvain/openjpeg/archive/version.2.1.tar.gz
-    fn: openjpeg-2.1.tar.gz
+    url: https://github.com/uclouvain/openjpeg/archive/version.{{version}}.tar.gz
+    fn: openjpeg-{{version}}.tar.gz
 
 build:
   number: 0
