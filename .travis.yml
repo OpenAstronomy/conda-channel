@@ -35,7 +35,7 @@ install:
     # Install a couple of dependencies we need for sure.
     - conda install --quiet --yes astropy anaconda-client jinja2 cython pycrypto
 
-    - conda config --add channels astropy
+    - conda config --add channels openastronomy
     - conda config --add channels conda-forge
 
     # Install obvious-ci.
