@@ -52,7 +52,7 @@
 
 
 - name: sunpy
-  version: '0.6.2'
+  version: '0.6.3'
   setup_options: '--offline'
   python: '2.7*'
 # # The package below has a recipe template.
