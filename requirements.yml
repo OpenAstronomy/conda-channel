@@ -69,3 +69,5 @@
   version: '1.9.1'
   numpy_compiled_extensions: true
   numpy_build_restrictions: '>=1.9*'
+  excluded_platforms:
+      - 'win-64'
