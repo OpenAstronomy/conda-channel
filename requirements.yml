@@ -55,10 +55,21 @@
   version: '0.6.3'
   setup_options: '--offline'
   python: '2.7*'
+  excluded_platforms:
+    - 'win-64'
 
 - name: openjpeg
   version: '2.1'
+  excluded_platforms:
+    - 'win-64'
 # # The package below has a recipe template.
 
 # - name: APLpy
 #   version: '1.0'
+
+- name: healpy
+  version: '1.9.1'
+  numpy_compiled_extensions: true
+  numpy_build_restrictions: '>=1.9*'
+  excluded_platforms:
+      - 'win-64'
