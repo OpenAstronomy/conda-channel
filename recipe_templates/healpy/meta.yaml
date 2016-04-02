@@ -17,7 +17,6 @@ requirements:
   - numpy
   - six
   - astropy
-  - python >=3.4*
   - numpy >=1.9*
   run:
   - python
@@ -26,7 +25,6 @@ requirements:
   - numpy
   - six
   - astropy
-  - python >=3.4*
   - numpy >=1.9*
 
 test:
