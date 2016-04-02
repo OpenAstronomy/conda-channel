@@ -15,14 +15,12 @@ requirements:
   - python
   - setuptools
   - matplotlib
-  - numpy
   - numpy x.x
   - six
   - astropy
   run:
   - python
   - matplotlib
-  - numpy
   - numpy x.x
   - six
   - astropy
