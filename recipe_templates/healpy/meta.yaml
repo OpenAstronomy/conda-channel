@@ -1,3 +1,5 @@
+# Recipe needed to add nose as a test requirement (no idea which dependency
+# actually needs nose...healpy does not).
 about:
   home: http://github.com/healpy
   license: GNU General Public License v2 or later (GPLv2+)
@@ -13,19 +15,17 @@ requirements:
   - python
   - setuptools
   - matplotlib
-  - numpy x.x
   - numpy
+  - numpy x.x
   - six
   - astropy
-  - numpy >=1.9*
   run:
   - python
   - matplotlib
-  - numpy x.x
   - numpy
+  - numpy x.x
   - six
   - astropy
-  - numpy >=1.9*
 
 test:
   imports:
