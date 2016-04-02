@@ -55,4 +55,4 @@ script:
     # Get ready to build.
     - extrude_recipes requirements.yml
     # Packages are uploaded as they are built.
-    - if [[ -d recipes ]]; then obvci_conda_build_dir --build-condition="python $PYTHON_BUILD_RESTRICTIONS" recipes $DESTINATION_CONDA_CHANNEL; fi
+    - if [[ -d recipes ]]; then obvci_conda_build_dir --build-condition="python $PYTHON_BUILD_RESTRICTIONS" --build-condition="numpy <1.11" recipes $DESTINATION_CONDA_CHANNEL; fi
