@@ -55,8 +55,6 @@
   version: '0.6.3'
   setup_options: '--offline'
   python: '2.7*'
-  excluded_platforms:
-    - 'win-64'
 
 - name: openjpeg
   version: '2.1'
