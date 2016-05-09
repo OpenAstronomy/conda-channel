@@ -50,9 +50,8 @@
 - name: Glymur
   version: '0.8.3'
 
-
 - name: sunpy
-  version: '0.6.3'
+  version: '0.6.4'
   setup_options: '--offline'
   python: '2.7*'
 
@@ -60,14 +59,3 @@
   version: '2.1'
   excluded_platforms:
     - 'win-64'
-# # The package below has a recipe template.
-
-# - name: APLpy
-#   version: '1.0'
-
-- name: healpy
-  version: '1.9.1'
-  numpy_compiled_extensions: true
-  numpy_build_restrictions: '>=1.9*,<1.11'
-  excluded_platforms:
-      - 'win-64'
