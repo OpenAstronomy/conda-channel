@@ -49,23 +49,16 @@
 
 - name: Glymur
   version: '0.8.3'
-
+  python: '2.7*'
 
 - name: sunpy
-  version: '0.6.3'
-  setup_options: '--offline'
+  version: '0.6.4'
   python: '2.7*'
-  excluded_platforms:
-    - 'win-64'
 
 - name: openjpeg
   version: '2.1'
   excluded_platforms:
     - 'win-64'
-# # The package below has a recipe template.
-
-# - name: APLpy
-#   version: '1.0'
 
 - name: healpy
   version: '1.9.1'
