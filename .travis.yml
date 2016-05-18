@@ -19,6 +19,8 @@ env:
         # can have any value. The setting below avoids known-bad builds on
         # python 2.6 and 3.3 for some packages.
         - PYTHON_BUILD_RESTRICTIONS="2.7*|>=3.4"
+        # This apparently needs to be set even if it is not used...
+        - CONDA_NPY=1.11
 
 # Matrix is fully specified (for now) by os versions
 
@@ -39,7 +41,7 @@ install:
     - conda config --add channels conda-forge
 
     # Install obvious-ci.
-    - conda install -c conda-forge obvious-ci
+    - conda install -c conda-forge conda-build-all
 
 
     # Finally, install extruder
@@ -54,5 +56,11 @@ install:
 script:
     # Get ready to build.
     - extrude_recipes requirements.yml
+    # I really need to monkey-patch conda skeleton or something. This is
+    # stupid. Remove my patched version of conda-build and replace it with
+    # the latest known good version. It contains a fix for an issue in which
+    # Windows is unwilling to empty the trash, causing a problem.
+    - conda remove --force conda-build
+    - conda install conda-build=1.20.2
     # Packages are uploaded as they are built.
-    - if [[ -d recipes ]]; then obvci_conda_build_dir --build-condition="python $PYTHON_BUILD_RESTRICTIONS" recipes $DESTINATION_CONDA_CHANNEL; fi
+    - if [[ -d recipes ]]; then conda build-all --inspect-channels="$DESTINATION_CONDA_CHANNEL" --upload-channels="$DESTINATION_CONDA_CHANNEL" --matrix-condition="python $PYTHON_BUILD_RESTRICTIONS" recipes; fi

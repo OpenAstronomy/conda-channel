@@ -13,6 +13,9 @@ environment:
   # of any package-specific version restrictions
   PYTHON_BUILD_RESTRICTIONS: "2.7*|>=3.4"
 
+  # This apparently needs to be set even if it is not used...
+  CONDA_NPY: "1.11"
+
   BINSTAR_TOKEN:
     # Paste the security token for your destination conda channel here.
     secure: "CJ7C2i5p5GV3luBy4N3865nBMRPonzxlMMikVszEqx+zHGaw6l2RH/1K/ZyirqYe"
@@ -55,7 +58,7 @@ install:
     - cmd: conda install --quiet astropy anaconda-client jinja2 cython
     # These installs are needed on windows but not other platforms.
     - cmd: conda install patch psutil
-    - cmd: conda install -c conda-forge obvious-ci
+    - cmd: conda install -c conda-forge conda-build-all
 
     # Finally, install extruder
     - cmd: conda install extruder
@@ -70,5 +73,11 @@ build: off
 test_script:
     # Get ready to build.
     - "%CMD_IN_ENV% extrude_recipes requirements.yml"
+    # I really need to monkey-patch conda skeleton or something. This is
+    # Reinstall this to upgrade conda-build (stupid!)
+    # the latest known good version. It contains a fix for an issue in which
+    # Windows is unwilling to empty the trash, causing a problem.
+    - conda install -c conda-forge conda-build-all
+    - conda install conda-build=1.20.2
     # Packages are uploaded as they are built.
-    - if exist recipes %CMD_IN_ENV% obvci_conda_build_dir --build-condition="python %PYTHON_BUILD_RESTRICTIONS%" recipes %DESTINATION_CONDA_CHANNEL%
+    - if exist recipes %CMD_IN_ENV% conda build-all --inspect-channels="%DESTINATION_CONDA_CHANNEL%" --upload-channels="%DESTINATION_CONDA_CHANNEL%" --matrix-condition="python %PYTHON_BUILD_RESTRICTIONS%" recipes
