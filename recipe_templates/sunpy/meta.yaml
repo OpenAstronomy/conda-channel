@@ -35,7 +35,7 @@ requirements:
     - suds-jurko
     - glymur
     - sqlalchemy
-    - beautiful-soup
+    - beautifulsoup4
     - requests
     - bsddb  # [unix and py27]
     - pytest
