@@ -4,6 +4,11 @@ environment:
   # Anaconda.org channel to which packages should be uploaded.
   DESTINATION_CONDA_CHANNEL: "openastronomy"
 
+  # The channel(s) below will be searched, in the order listed below,
+  # for packages matching the version being built. If found, they will
+  # be copied from the channels below instead of being built again.
+  INSPECT_CONDA_CHANNELS: "conda-forge"
+
   # Appveyor machines come with miniconda already installed.
   CONDA_INSTALL_LOCN: "C:\\Miniconda-x64"
 
@@ -80,4 +85,4 @@ test_script:
     - conda install -c conda-forge conda-build-all
     - conda install conda-build=1.20.2
     # Packages are uploaded as they are built.
-    - if exist recipes %CMD_IN_ENV% conda build-all --inspect-channels="%DESTINATION_CONDA_CHANNEL%" --upload-channels="%DESTINATION_CONDA_CHANNEL%" --matrix-condition="python %PYTHON_BUILD_RESTRICTIONS%" recipes
+    - if exist recipes %CMD_IN_ENV% conda build-all --inspect-channels="%INSPECT_CONDA_CHANNELS%" --inspect-channels="%DESTINATION_CONDA_CHANNEL%" --upload-channels="%DESTINATION_CONDA_CHANNEL%" --matrix-condition="python %PYTHON_BUILD_RESTRICTIONS%" recipes
