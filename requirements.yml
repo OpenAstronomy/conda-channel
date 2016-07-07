@@ -64,3 +64,7 @@
   numpy_build_restrictions: '>=1.9*,<1.11'
   excluded_platforms:
       - 'win-64'
+
+- name: cfitsio
+  version: '3.390'
+  md5: e92dd2a4282a1c50d46167041a29fc67
