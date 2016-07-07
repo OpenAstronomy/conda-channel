@@ -5,7 +5,7 @@ package:
 source:
   fn: cfitsio{{version|replace(".", "")}}.tar.gz
   url: http://heasarc.gsfc.nasa.gov/FTP/software/fitsio/c/cfitsio{{version|replace(".", "")}}.tar.gz
-  md5: {{md5}}
+  md5: e92dd2a4282a1c50d46167041a29fc67
 
 # build:
 #   # If this is a new build for the same version, increment the build
