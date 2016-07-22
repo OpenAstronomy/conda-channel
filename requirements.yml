@@ -45,20 +45,18 @@
   version: '6.3'
 
 - name: contextlib2
-  version: '0.5.1'
+  version: '0.5.3'
 
 - name: Glymur
-  version: '0.8.3'
+  version: '0.8.4'
   python: '2.7*'
 
 - name: sunpy
-  version: '0.6.4'
+  version: '0.7.2'
   python: '2.7*'
 
 - name: openjpeg
-  version: '2.1'
-  excluded_platforms:
-    - 'win-64'
+  version: '2.1.0'
 
 - name: healpy
   version: '1.9.1'

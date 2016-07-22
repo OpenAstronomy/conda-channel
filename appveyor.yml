@@ -25,15 +25,15 @@ environment:
     # python version. Right now conda build does not configure the SDK, and
     # the appveyor setup only sets up the SDK once, so separate by python
     # versions.
+    # - TARGET_ARCH: "x64"
+    #   PYTHON_BUILD_RESTRICTIONS: "2.7*"
+    #   CONDA_PY: "27"
     - TARGET_ARCH: "x64"
-      PYTHON_BUILD_RESTRICTIONS: "2.7*"
-      CONDA_PY: "27"
-    - TARGET_ARCH: "x64"
-      PYTHON_BUILD_RESTRICTIONS: "3.4*"
+      #PYTHON_BUILD_RESTRICTIONS: "3.4*"
       CONDA_PY: "34"
-    - TARGET_ARCH: "x64"
-      PYTHON_BUILD_RESTRICTIONS: "3.5*"
-      CONDA_PY: "35"
+    # - TARGET_ARCH: "x64"
+    #   PYTHON_BUILD_RESTRICTIONS: "3.5*"
+    #   CONDA_PY: "35"
     # For 32 bit builds there are no compiler issues, let Obvious-CI
     # handle the matrix.
     # - TARGET_ARCH: "x86"
@@ -65,19 +65,17 @@ install:
 
     # Install custom version of conda-build for now (need to be able to pass
     # options to setup.py)
-    - cmd: conda install -c astropy-ci-extras conda-build=1.18.1
+    - cmd: conda remove --force conda-build
+    - cmd: conda install -c astropy-ci-extras --override-channels conda-build=1.21.5.mod
 
 # Skip .NET project specific build phase.
 build: off
 
 test_script:
-    # Get ready to build.
+    # Upload only if this is NOT a pull request...
+    - if defined APPVEYOR_PULL_REQUEST_NUMBER (set UPLOAD=) else (set UPLOAD=--upload-channels %DESTINATION_CONDA_CHANNEL%)
+    - echo Upload is %UPLOAD%
+    # Generate recipes...
     - "%CMD_IN_ENV% extrude_recipes requirements.yml"
-    # I really need to monkey-patch conda skeleton or something. This is
-    # Reinstall this to upgrade conda-build (stupid!)
-    # the latest known good version. It contains a fix for an issue in which
-    # Windows is unwilling to empty the trash, causing a problem.
-    - conda install -c conda-forge conda-build-all
-    - conda install conda-build=1.20.2
-    # Packages are uploaded as they are built.
-    - if exist recipes %CMD_IN_ENV% conda build-all --inspect-channels="%DESTINATION_CONDA_CHANNEL%" --upload-channels="%DESTINATION_CONDA_CHANNEL%" --matrix-condition="python %PYTHON_BUILD_RESTRICTIONS%" recipes
+    # Build, and, if necessary, upload.
+    - if exist recipes %CMD_IN_ENV% conda build-all recipes --inspect-channels "%DESTINATION_CONDA_CHANNEL%" --matrix-condition="python %PYTHON_BUILD_RESTRICTIONS%"  %UPLOAD%
