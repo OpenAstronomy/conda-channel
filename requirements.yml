@@ -56,9 +56,7 @@
   python: '2.7*'
 
 - name: openjpeg
-  version: '2.1'
-  excluded_platforms:
-    - 'win-64'
+  version: '2.1.0'
 
 - name: healpy
   version: '1.9.1'
