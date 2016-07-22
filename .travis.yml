@@ -54,13 +54,9 @@ install:
     - conda install -c astropy-ci-extras --override-channels conda-build=1.18.1
 
 script:
+    # Only upload if this is NOT a pull request.
+    - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then UPLOAD="--upload-channels $DESTINATION_CONDA_CHANNEL"; else UPLOAD=""; fi'
     # Get ready to build.
     - extrude_recipes requirements.yml
-    # I really need to monkey-patch conda skeleton or something. This is
-    # stupid. Remove my patched version of conda-build and replace it with
-    # the latest known good version. It contains a fix for an issue in which
-    # Windows is unwilling to empty the trash, causing a problem.
-    - conda remove --force conda-build
-    - conda install conda-build=1.20.2
     # Packages are uploaded as they are built.
-    - if [[ -d recipes ]]; then conda build-all --inspect-channels="$DESTINATION_CONDA_CHANNEL" --upload-channels="$DESTINATION_CONDA_CHANNEL" --matrix-condition="python $PYTHON_BUILD_RESTRICTIONS" recipes; fi
+    - if [[ -d recipes ]]; then conda build-all recipes --inspect-channels "$DESTINATION_CONDA_CHANNEL" --matrix-condition="python $PYTHON_BUILD_RESTRICTIONS" $UPLOAD; fi
