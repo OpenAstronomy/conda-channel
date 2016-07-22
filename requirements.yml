@@ -53,7 +53,6 @@
 
 - name: sunpy
   version: '0.7.2'
-  python: '2.7*'
 
 - name: openjpeg
   version: '2.1.0'

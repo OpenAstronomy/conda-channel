@@ -59,4 +59,4 @@ script:
     # Get ready to build.
     - extrude_recipes requirements.yml
     # Packages are uploaded as they are built.
-    - if [[ -d recipes ]]; then conda build-all recipes --inspect-channels "$DESTINATION_CONDA_CHANNEL" --matrix-condition="python $PYTHON_BUILD_RESTRICTIONS" $UPLOAD; fi
+    - if [[ -d recipes ]]; then conda build-all recipes --inspect-channels "$DESTINATION_CONDA_CHANNEL" conda-forge --matrix-condition="python $PYTHON_BUILD_RESTRICTIONS" $UPLOAD; fi
