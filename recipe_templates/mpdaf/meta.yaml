@@ -1,0 +1,64 @@
+package:
+  name: mpdaf
+  version: "{{version}}"
+
+source:
+  fn: mpdaf-{{version}}.tar.gz
+  url: https://files.pythonhosted.org/packages/source/m/mpdaf/mpdaf-{{version}}.tar.gz
+  md5: {{md5}}
+#  patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  # number: 1
+  # noarch_python: True
+  # preserve_egg_dir: True
+  entry_points:
+    - make_white_image = mpdaf.scripts.make_white_image:main
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - numpy
+    - cfitsio
+
+  run:
+    - python
+    - numpy
+    - scipy
+    - numexpr
+    - matplotlib
+    - astropy >=1.0
+    - six
+    - cfitsio
+
+test:
+  # Python imports
+  imports:
+    - mpdaf
+    - mpdaf.MUSE
+    - mpdaf.drs
+    - mpdaf.obj
+    - mpdaf.scripts
+    - mpdaf.sdetect
+    - mpdaf.tools
+    - mpdaf.tools.ctools
+
+  commands:
+    - make_white_image --help
+    # - nosetests -sv -a speed=fast $SRC_DIR
+
+  requires:
+    - nose
+
+about:
+  home: https://git-cral.univ-lyon1.fr/MUSE/mpdaf
+  license: BSD License
+  license_file: LICENSE
+  summary: 'MUSE Python Data Analysis Framework is a python framework in view of the analysis of MUSE data.'
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
