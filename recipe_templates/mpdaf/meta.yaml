@@ -4,8 +4,7 @@ package:
 
 source:
   fn: mpdaf-{{version}}.tar.gz
-  # url: https://pypi.python.org/packages/source/m/mpdaf/mpdaf-{{version}}.tar.gz
-  url: https://pypi.python.org/packages/e7/86/58ccfcda20b375ba9875958ebfd31760688f6a91aa8b6ff317a1181a4342/mpdaf-2.0.tar.gz#md5=0b1406dcb166d8693e35ce73443fd106
+  url: https://files.pythonhosted.org/packages/source/m/mpdaf/mpdaf-{{version}}.tar.gz
   md5: {{md5}}
 #  patches:
    # List any patch files here
