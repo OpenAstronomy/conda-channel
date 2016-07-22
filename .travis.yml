@@ -50,8 +50,7 @@ install:
     # Install custom version of conda-build for now (need to be able to pass
     # options to setup.py)
     - conda remove --force conda-build
-    - conda install --force openssl=1.0.2d
-    - conda install -c astropy-ci-extras --override-channels conda-build=1.18.1
+    - conda install -c astropy-ci-extras --override-channels conda-build=1.21.5.mod
 
 script:
     # Only upload if this is NOT a pull request.
