@@ -78,4 +78,4 @@ test_script:
     # Generate recipes...
     - "%CMD_IN_ENV% extrude_recipes requirements.yml"
     # Build, and, if necessary, upload.
-    - if exist recipes %CMD_IN_ENV% conda build-all recipes --inspect-channels "%DESTINATION_CONDA_CHANNEL%" --matrix-condition="python %PYTHON_BUILD_RESTRICTIONS%"  %UPLOAD%
+    - if exist recipes %CMD_IN_ENV% conda build-all recipes --inspect-channels %DESTINATION_CONDA_CHANNEL% conda-forge --matrix-condition="python %PYTHON_BUILD_RESTRICTIONS%"  %UPLOAD%
