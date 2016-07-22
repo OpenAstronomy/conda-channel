@@ -72,3 +72,5 @@
   version: '0.9.8'
   numpy_compiled_extensions: true
   python: '>2.6|>=3.4'
+  excluded_platforms:
+      - 'win-64'
