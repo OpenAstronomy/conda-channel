@@ -1,0 +1,71 @@
+{% version = "1.0.0" %}
+{% name = "sep" %}
+{% set md5 = "3837ce172b8b241723463423261bd76f" %}
+
+package:
+  name: sep
+  version: {{ version }}
+
+source:
+  fn: sep-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  md5: {{ md5 }}
+#  patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  - script: python setup.py install --single-version-externally-managed --record record.txt
+  # noarch_python: True
+  # preserve_egg_dir: True
+  # entry_points:
+    # Put any entry points (scripts to be generated automatically) here. The
+    # syntax is module:function.  For example
+    #
+    # - sep = sep:main
+    #
+    # Would create an entry point called sep that calls sep.main()
+
+
+  # If this is a new build for the same version, increment the build
+  # number. If you do not include this key, it defaults to 0.
+  # number: 1
+
+requirements:
+  build:
+    - python
+    - cython
+    - numpy
+    - numpy x.x
+    - setuptools
+
+  run:
+    - python
+    - numpy x.x
+
+test:
+  # Python imports
+  imports:
+    - sep
+
+  # commands:
+    # You can put test commands to be run here.  Use this to test that the
+    # entry points work.
+
+
+  # You can also put a file called run_test.py in the recipe that will be run
+  # at test time.
+
+  # requires:
+    # Put any additional test requirements here.  For example
+    # - nose
+
+about:
+  home: https://github.com/kbarbary/sep
+  license: GNU Lesser General Public License v3 or later (LGPLv3+)
+  summary: 'Astronomical source extraction and photometry library'
+  license_family: Public-Domain
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
