@@ -39,17 +39,24 @@ install:
 
     - conda config --add channels astropy
 
-    # Install obvious-ci.
+    # Add conda-forge, but then add defaults again to bump it up to top priority
+    - conda config --add channels conda-forge
+    - conda config --add channels defaults
+
     - conda install conda-build=2.0*
 
+    # Install dependencies of conda-build-all. Necessary until conda-forge
+    # no longer has old version of conda-build
+    #- conda install funcsigs gitdb gitpython mock pbr smmap
+
     # Install conda-build-all
-    - conda install -c conda-forge conda-build-all=1.0*
+    - conda install -conda-build-all=1.0*
 
     # Re-update conda
     - conda update conda
 
     # Finally, install extruder
-    - conda install -c astropy -c conda-forge  extruder
+    - conda install -c astropy extruder
 
     - conda update conda
 
