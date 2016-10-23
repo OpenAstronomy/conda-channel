@@ -61,7 +61,7 @@ install:
     - cmd: conda install -c conda-forge conda-build-all
 
     # Finally, install extruder
-    - cmd: conda install extruder
+    - cmd: conda install -c conda-forge -c astropy extruder
 
 # Skip .NET project specific build phase.
 build: off
