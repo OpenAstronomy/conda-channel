@@ -25,15 +25,15 @@ environment:
     # python version. Right now conda build does not configure the SDK, and
     # the appveyor setup only sets up the SDK once, so separate by python
     # versions.
-    # - TARGET_ARCH: "x64"
-    #   PYTHON_BUILD_RESTRICTIONS: "2.7*"
-    #   CONDA_PY: "27"
     - TARGET_ARCH: "x64"
-      #PYTHON_BUILD_RESTRICTIONS: "3.4*"
+      PYTHON_BUILD_RESTRICTIONS: "2.7*"
+      CONDA_PY: "27"
+    - TARGET_ARCH: "x64"
+      PYTHON_BUILD_RESTRICTIONS: "3.4*"
       CONDA_PY: "34"
-    # - TARGET_ARCH: "x64"
-    #   PYTHON_BUILD_RESTRICTIONS: "3.5*"
-    #   CONDA_PY: "35"
+    - TARGET_ARCH: "x64"
+      PYTHON_BUILD_RESTRICTIONS: "3.5*"
+      CONDA_PY: "35"
     # For 32 bit builds there are no compiler issues, let Obvious-CI
     # handle the matrix.
     # - TARGET_ARCH: "x86"
@@ -55,6 +55,7 @@ install:
     - cmd: conda update --quiet conda
     - cmd: conda config --add channels openastronomy
     - cmd: conda config --add channels conda-forge
+    - cmd: conda install conda-build=2.0*
     - cmd: conda install --quiet astropy anaconda-client jinja2 cython
     # These installs are needed on windows but not other platforms.
     - cmd: conda install patch psutil
@@ -62,11 +63,6 @@ install:
 
     # Finally, install extruder
     - cmd: conda install extruder
-
-    # Install custom version of conda-build for now (need to be able to pass
-    # options to setup.py)
-    - cmd: conda remove --force conda-build
-    - cmd: conda install -c astropy-ci-extras --override-channels conda-build=1.21.5.mod
 
 # Skip .NET project specific build phase.
 build: off
@@ -78,4 +74,4 @@ test_script:
     # Generate recipes...
     - "%CMD_IN_ENV% extrude_recipes requirements.yml"
     # Build, and, if necessary, upload.
-    - if exist recipes %CMD_IN_ENV% conda build-all recipes --inspect-channels %DESTINATION_CONDA_CHANNEL% conda-forge --matrix-condition="python %PYTHON_BUILD_RESTRICTIONS%"  %UPLOAD%
+    - if exist recipes %CMD_IN_ENV% conda build-all recipes --inspect-channels %DESTINATION_CONDA_CHANNEL% conda-forge openastronomy astropy --matrix-condition="python %PYTHON_BUILD_RESTRICTIONS%"  %UPLOAD%
