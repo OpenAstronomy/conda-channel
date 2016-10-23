@@ -50,7 +50,7 @@ install:
     #- conda install funcsigs gitdb gitpython mock pbr smmap
 
     # Install conda-build-all
-    - conda install -conda-build-all=1.0*
+    - conda install conda-build-all=1.0*
 
     # Re-update conda
     - conda update conda
