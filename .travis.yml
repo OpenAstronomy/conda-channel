@@ -45,9 +45,13 @@ install:
     # Install conda-build-all
     - conda install -c conda-forge conda-build-all=1.0*
 
+    # Re-update conda
+    - conda update conda
+
     # Finally, install extruder
     - conda install -c astropy -c conda-forge  extruder
 
+    - conda update conda
 
 script:
     # Only upload if this is NOT a pull request.
