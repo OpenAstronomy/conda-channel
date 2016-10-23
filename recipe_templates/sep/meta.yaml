@@ -1,5 +1,5 @@
-{% version = "1.0.0" %}
-{% name = "sep" %}
+{% set version = "1.0.0" %}
+{% set name = "sep" %}
 {% set md5 = "3837ce172b8b241723463423261bd76f" %}
 
 package:
