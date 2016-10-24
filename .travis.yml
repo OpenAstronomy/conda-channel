@@ -37,21 +37,28 @@ install:
     # Install a couple of dependencies we need for sure.
     - conda install --quiet --yes astropy anaconda-client jinja2 cython pycrypto
 
-    - conda config --add channels openastronomy
+    - conda config --add channels astropy
+
+    # Add conda-forge, but then add defaults again to bump it up to top priority
     - conda config --add channels conda-forge
+    - conda config --add channels defaults
 
-    # Install obvious-ci.
-    - conda install -c conda-forge conda-build-all
+    - conda install conda-build=2.0*
 
+    # Install dependencies of conda-build-all. Necessary until conda-forge
+    # no longer has old version of conda-build
+    #- conda install funcsigs gitdb gitpython mock pbr smmap
+
+    # Install conda-build-all
+    - conda install conda-build-all=1.0*
+
+    # Re-update conda
+    - conda update conda
 
     # Finally, install extruder
     - conda install -c astropy extruder
 
-    # Install custom version of conda-build for now (need to be able to pass
-    # options to setup.py)
-    - conda remove --force conda-build
-    - conda install psutil
-    - conda install -c astropy-ci-extras --override-channels conda-build=1.21.5.mod
+    - conda update conda
 
 script:
     # Only upload if this is NOT a pull request.
