@@ -68,7 +68,7 @@
   version: '3.390'
 
 - name: fitsio
-  version: '0.9.8'
+  version: '0.9.10'
   numpy_compiled_extensions: true
   python: '>2.6|>=3.4'
   excluded_platforms:
