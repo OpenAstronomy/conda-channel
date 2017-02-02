@@ -21,6 +21,7 @@ env:
         - PYTHON_BUILD_RESTRICTIONS="2.7*|>=3.4"
         # This apparently needs to be set even if it is not used...
         - CONDA_NPY=1.11
+        - CONDA_VERSION=4.2*
 
 # Matrix is fully specified (for now) by os versions
 
@@ -31,6 +32,9 @@ install:
     - bash miniconda.sh -b -p $CONDA_INSTALL_LOCN
     - export PATH=${CONDA_INSTALL_LOCN}/bin:$PATH
     - conda config --set always_yes true
+
+    - PIN_FILE_CONDA=${CONDA_INSTALL_LOCN}/conda-meta/pinned
+    - echo "conda ${CONDA_VERSION}" > $PIN_FILE_CONDA
 
     - conda update --quiet conda
 
@@ -44,7 +48,7 @@ install:
     - conda config --add channels conda-forge
     - conda config --add channels defaults
 
-    - conda install conda-build=2.0*
+    - conda install conda-build=2.0.10
 
     # Install dependencies of conda-build-all. Necessary until conda-forge
     # no longer has old version of conda-build
@@ -53,17 +57,21 @@ install:
     # Install conda-build-all
     - conda install conda-build-all=1.0*
 
-    # Re-update conda
-    - conda update conda
-
     # Finally, install extruder
     - conda install -c astropy extruder
 
-    - conda update conda
+    # To ease debugging, list installed packages
+    - conda info -a
 
 script:
     # Only upload if this is NOT a pull request.
-    - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then UPLOAD="--upload-channels $DESTINATION_CONDA_CHANNEL"; else UPLOAD=""; fi'
+    - UPLOAD="";
+    - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
+        if [ $TRAVIS_REPO_SLUG = "Openastronomy/conda-channel" ]; then
+          echo "Uploading enabled";
+          UPLOAD="--upload-channels $DESTINATION_CONDA_CHANNEL";
+        fi;
+      fi
     # Get ready to build.
     - extrude_recipes requirements.yml
     # Packages are uploaded as they are built.
