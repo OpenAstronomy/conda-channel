@@ -45,7 +45,7 @@
   version: '6.3'
 
 - name: contextlib2
-  version: '0.5.3'
+  version: '0.5.4'
 
 - name: Glymur
   version: '0.8.7'
