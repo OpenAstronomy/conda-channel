@@ -45,10 +45,10 @@
   version: '6.3'
 
 - name: contextlib2
-  version: '0.5.3'
+  version: '0.5.4'
 
 - name: Glymur
-  version: '0.8.7'
+  version: '0.8.9'
   python: '2.7*'
 
 - name: sunpy
@@ -75,7 +75,7 @@
       - 'win-64'
 
 - name: mpdaf
-  version: '2.1'
+  version: '2.2'
   numpy_compiled_extensions: true
   python: '>2.6|>=3.4'
   excluded_platforms:
