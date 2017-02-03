@@ -64,9 +64,6 @@
   excluded_platforms:
       - 'win-64'
 
-- name: cfitsio
-  version: '3.390'
-
 - name: fitsio
   version: '0.9.8'
   numpy_compiled_extensions: true
