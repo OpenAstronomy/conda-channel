@@ -52,7 +52,7 @@
   python: '2.7*'
 
 - name: sunpy
-  version: '0.7.3'
+  version: '0.7.5'
 
 - name: openjpeg
   version: '2.1.0'
