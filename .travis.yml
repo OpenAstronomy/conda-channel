@@ -58,7 +58,7 @@ install:
     - conda install conda-build-all=1.0*
 
     # Finally, install extruder
-    - conda install -c astropy extruder
+    - conda install -c astropy extruder>=0.4.3
 
     # To ease debugging, list installed packages
     - conda info -a
