@@ -8,7 +8,10 @@
   # Version should match the version on PyPI. Versions that could be
   # interpreted as numbers (e.g. 0.1) must be enclosed in quotes.
 
-  # version: '0.3.3' # Required for all packages.
+  # If version is omitted then the most recent version available from
+  # the package source (either conda-forge or PyPI) will be built.
+
+  # version: '0.3.3' # Can be omitted...
 
   # # Some packages need extra options passed to setup.py install. This
   # # is the place to provide those options.
@@ -45,27 +48,21 @@
   version: '6.3'
 
 - name: contextlib2
-  version: '0.5.4'
 
 - name: Glymur
-  version: '0.8.9'
   python: '2.7*'
 
 - name: sunpy
-  version: '0.7.5'
 
 - name: openjpeg
-  version: '2.1.0'
 
 - name: healpy
-  version: '1.9.1'
   numpy_compiled_extensions: true
   numpy_build_restrictions: '>=1.9*,<1.11'
   excluded_platforms:
       - 'win-64'
 
 - name: cfitsio
-  version: '3.410'
 
 - name: fitsio
   version: '0.9.8'
