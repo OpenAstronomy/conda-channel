@@ -48,7 +48,7 @@ install:
     - conda config --add channels conda-forge
     - conda config --add channels defaults
 
-    - conda install conda-build=2.0.10
+    - conda install conda-build=2.1
 
     # Install dependencies of conda-build-all. Necessary until conda-forge
     # no longer has old version of conda-build

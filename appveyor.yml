@@ -54,7 +54,7 @@ install:
     - cmd: conda config --set always_yes true
     - cmd: conda update --quiet conda
     - cmd: conda config --add channels openastronomy
-    - cmd: conda install conda-build=2.0*
+    - cmd: conda install conda-build=2.1*
     - cmd: conda install --quiet astropy anaconda-client jinja2 cython
     # These installs are needed on windows but not other platforms.
     - cmd: conda install patch psutil
