@@ -60,11 +60,6 @@ install:
     # Finally, install extruder
     - conda install -c astropy extruder>=0.4.3
 
-    # For reasons that are not clear, installing extruder downgrades conda build,
-    # so reinstall it.
-
-    - conda install conda-build=2.1
-
     # To ease debugging, list installed packages
     - conda info -a
 
