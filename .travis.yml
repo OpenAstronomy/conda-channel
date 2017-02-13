@@ -50,9 +50,6 @@ install:
 
     - conda install conda-build=2.1
 
-    # To ease debugging, list installed packages
-    - conda info -a
-
     # Install dependencies of conda-build-all. Necessary until conda-forge
     # no longer has old version of conda-build
     #- conda install funcsigs gitdb gitpython mock pbr smmap
@@ -60,11 +57,13 @@ install:
     # Install conda-build-all
     - conda install conda-build-all=1.0
 
-    # To ease debugging, list installed packages
-    - conda info -a
-
     # Finally, install extruder
     - conda install -c astropy extruder>=0.4.3
+
+    # For reasons that are not clear, installing extruder downgrades conda build,
+    # so reinstall it.
+
+    - conda install conda-build=2.1
 
     # To ease debugging, list installed packages
     - conda info -a
