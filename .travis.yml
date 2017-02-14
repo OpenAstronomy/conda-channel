@@ -69,7 +69,7 @@ script:
     # Only upload if this is NOT a pull request.
     - UPLOAD="";
     - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
-        if [ $TRAVIS_REPO_SLUG = "Openastronomy/conda-channel" ]; then
+        if [ $TRAVIS_REPO_SLUG = "OpenAstronomy/conda-channel" ]; then
           echo "Uploading enabled";
           UPLOAD="--upload-channels $DESTINATION_CONDA_CHANNEL";
         fi;
