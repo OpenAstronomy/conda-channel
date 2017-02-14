@@ -13,6 +13,8 @@ environment:
   # of any package-specific version restrictions
   PYTHON_BUILD_RESTRICTIONS: "2.7*|>=3.4"
 
+  NUMPY_BUILD_RESTRICTIONS: "numpy 1.11*"
+
   # This apparently needs to be set even if it is not used...
   CONDA_NPY: "1.11"
 
@@ -54,14 +56,14 @@ install:
     - cmd: conda config --set always_yes true
     - cmd: conda update --quiet conda
     - cmd: conda config --add channels openastronomy
-    - cmd: conda install conda-build=2.0*
+    - cmd: conda install conda-build=2.1*
     - cmd: conda install --quiet astropy anaconda-client jinja2 cython
     # These installs are needed on windows but not other platforms.
     - cmd: conda install patch psutil
     - cmd: conda install -c conda-forge conda-build-all
 
     # Finally, install extruder
-    - cmd: conda install -c conda-forge -c astropy extruder
+    - cmd: conda install -c conda-forge -c astropy extruder>=0.4.3
 
 # Skip .NET project specific build phase.
 build: off
@@ -73,4 +75,4 @@ test_script:
     # Generate recipes...
     - "%CMD_IN_ENV% extrude_recipes requirements.yml"
     # Build, and, if necessary, upload.
-    - if exist recipes %CMD_IN_ENV% conda build-all recipes --inspect-channels %DESTINATION_CONDA_CHANNEL% conda-forge openastronomy astropy --matrix-condition="python %PYTHON_BUILD_RESTRICTIONS%"  %UPLOAD%
+    - if exist recipes %CMD_IN_ENV% conda build-all recipes --inspect-channels %DESTINATION_CONDA_CHANNEL% conda-forge openastronomy astropy --matrix-conditions "python %PYTHON_BUILD_RESTRICTIONS%" %NUMPY_BUILD_RESTRICTIONS% %UPLOAD%

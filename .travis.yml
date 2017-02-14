@@ -19,6 +19,8 @@ env:
         # can have any value. The setting below avoids known-bad builds on
         # python 2.6 and 3.3 for some packages.
         - PYTHON_BUILD_RESTRICTIONS="2.7*|>=3.4"
+
+        - NUMPY_BUILD_RESTRICTIONS="numpy 1.11*"
         # This apparently needs to be set even if it is not used...
         - CONDA_NPY=1.11
         - CONDA_VERSION=4.2*
@@ -48,17 +50,17 @@ install:
     - conda config --add channels conda-forge
     - conda config --add channels defaults
 
-    - conda install conda-build=2.0.10
+    - conda install conda-build=2.1
 
     # Install dependencies of conda-build-all. Necessary until conda-forge
     # no longer has old version of conda-build
     #- conda install funcsigs gitdb gitpython mock pbr smmap
 
     # Install conda-build-all
-    - conda install conda-build-all=1.0*
+    - conda install conda-build-all=1.0
 
     # Finally, install extruder
-    - conda install -c astropy extruder
+    - conda install -c astropy extruder>=0.4.3
 
     # To ease debugging, list installed packages
     - conda info -a
@@ -75,4 +77,4 @@ script:
     # Get ready to build.
     - extrude_recipes requirements.yml
     # Packages are uploaded as they are built.
-    - if [[ -d recipes ]]; then conda build-all recipes --inspect-channels "$DESTINATION_CONDA_CHANNEL" conda-forge --matrix-condition="python $PYTHON_BUILD_RESTRICTIONS" $UPLOAD; fi
+    - if [[ -d recipes ]]; then conda build-all recipes --inspect-channels "$DESTINATION_CONDA_CHANNEL" conda-forge --matrix-conditions "python $PYTHON_BUILD_RESTRICTIONS" "$NUMPY_BUILD_RESTRICTIONS" $UPLOAD; fi
