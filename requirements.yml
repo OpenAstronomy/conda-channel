@@ -55,6 +55,8 @@
 - name: sunpy
 
 - name: openjpeg
+  excluded_platforms:
+      - 'win-64'
 
 - name: healpy
   numpy_compiled_extensions: true
