@@ -58,7 +58,7 @@
 
 - name: healpy
   numpy_compiled_extensions: true
-  numpy_build_restrictions: '>=1.9*,<1.11'
+  numpy_build_restrictions: '>=1.11*,<1.12'
   excluded_platforms:
       - 'win-64'
 
