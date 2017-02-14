@@ -13,7 +13,7 @@ environment:
   # of any package-specific version restrictions
   PYTHON_BUILD_RESTRICTIONS: "2.7*|>=3.4"
 
-  NUMPY_BUILD_RESTRICTIONS: "numpy <1.12"
+  NUMPY_BUILD_RESTRICTIONS: "numpy 1.11*"
 
   # This apparently needs to be set even if it is not used...
   CONDA_NPY: "1.11"
