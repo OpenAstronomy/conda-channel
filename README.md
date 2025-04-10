@@ -1,3 +1,6 @@
+#### This repository is archived and the ``openastronomy`` conda channel is no longer updated.  Please use ``conda-forge`` instead.
+
+---
 # OpenAstronomy conda channel
 
 ## Installing packages
